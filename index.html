@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>William Tom Jacob — AI Engineer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio of William Tom Jacob — AI Engineer specializing in RAG systems, LLM fine-tuning and deployment">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B0E13;
+    --bg-panel: #12161D;
+    --bg-panel-2: #171C24;
+    --border: #262C36;
+    --text: #E7E9EC;
+    --text-dim: #8992A1;
+    --text-faint: #565F6C;
+    --accent: #6EE7C0;
+    --accent-dim: rgba(110,231,192,0.10);
+    --accent-strong: #48C9A2;
+    --amber: #E8A855;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --radius: 3px;
+    --maxw: 760px;
+  }
+  :root:not([data-theme="light"]){ color-scheme: dark; }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --bg: #F5F6F3;
+      --bg-panel: #FFFFFF;
+      --bg-panel-2: #EEF0EC;
+      --border: #D9DCD6;
+      --text: #12161D;
+      --text-dim: #565F6C;
+      --text-faint: #8992A1;
+      --accent: #12876B;
+      --accent-dim: rgba(18,135,107,0.08);
+      --accent-strong: #0E6E58;
+      --amber: #B5762A;
+      color-scheme: light;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg: #F5F6F3;
+    --bg-panel: #FFFFFF;
+    --bg-panel-2: #EEF0EC;
+    --border: #D9DCD6;
+    --text: #12161D;
+    --text-dim: #565F6C;
+    --text-faint: #8992A1;
+    --accent: #12876B;
+    --accent-dim: rgba(18,135,107,0.08);
+    --accent-strong: #0E6E58;
+    --amber: #B5762A;
+    color-scheme: light;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection{ background: var(--accent-dim); color: var(--text); }
+
+  a{ color: var(--text); }
+  a.link{
+    color: var(--accent-strong);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-dim);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+  }
+  a.link:hover{ text-decoration-color: var(--accent); }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- top bar ---------- */
+  header.topbar{
+    position: sticky; top:0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-inner{
+    max-width: var(--maxw); margin:0 auto; padding: 14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .topbar-name{
+    font-family: var(--mono); font-size: 13px; font-weight:600;
+    letter-spacing: 0.01em; white-space:nowrap;
+  }
+  .topbar-name .dot{ color: var(--accent); }
+  nav.toplinks{ display:flex; gap: 18px; flex-wrap: wrap; }
+  nav.toplinks a{
+    font-family: var(--mono); font-size: 12.5px; color: var(--text-dim);
+    text-decoration:none; padding: 4px 2px; border-bottom: 1px solid transparent;
+  }
+  nav.toplinks a:hover{ color: var(--text); border-bottom-color: var(--border); }
+  .theme-toggle{
+    font-family: var(--mono); font-size: 12px; color: var(--text-dim);
+    background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 5px 9px; cursor: pointer; line-height:1;
+  }
+  .theme-toggle:hover{ color: var(--text); border-color: var(--text-faint); }
+
+  /* ---------- hero ---------- */
+  .hero{ padding: 64px 0 40px; border-bottom: 1px solid var(--border); }
+  .hero-eyebrow{
+    font-family: var(--mono); font-size: 13px; color: var(--accent);
+    display:flex; align-items:center; gap:8px; margin-bottom: 18px;
+  }
+  .hero-eyebrow .pulse{
+    width:7px; height:7px; border-radius:50%; background: var(--accent);
+    box-shadow: 0 0 0 0 var(--accent-dim);
+    animation: pulse 2.4s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 var(--accent-dim); }
+    70%{ box-shadow: 0 0 0 7px transparent; }
+    100%{ box-shadow: 0 0 0 0 transparent; }
+  }
+  @media (prefers-reduced-motion: reduce){ .hero-eyebrow .pulse{ animation:none; } }
+
+  h1.name{
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(2.1rem, 5.4vw, 3.1rem);
+    line-height: 1.08; margin: 0 0 14px; letter-spacing: -0.01em;
+  }
+  p.role-line{
+    font-family: var(--mono); font-size: 15px; color: var(--text-dim);
+    margin: 0 0 22px;
+  }
+  p.hero-summary{
+    font-size: 18px; color: var(--text); max-width: 62ch; margin: 0 0 30px;
+  }
+
+  .spec-block{
+    display:grid; grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    overflow:hidden; background: var(--bg-panel);
+  }
+  .spec-cell{
+    padding: 16px 18px; border-right: 1px solid var(--border);
+  }
+  .spec-cell:last-child{ border-right:none; }
+  .spec-label{
+    font-family: var(--mono); font-size: 11px; color: var(--text-faint);
+    margin-bottom: 6px;
+  }
+  .spec-value{ font-family: var(--mono); font-size: 15px; font-weight:600; color: var(--text); }
+  @media (max-width: 560px){
+    .spec-block{ grid-template-columns: 1fr; }
+    .spec-cell{ border-right:none; border-bottom:1px solid var(--border); }
+    .spec-cell:last-child{ border-bottom:none; }
+  }
+
+  .hero-contact{ margin-top: 22px; display:flex; flex-wrap:wrap; gap: 18px; }
+  .hero-contact a{
+    font-family: var(--mono); font-size: 13px; color: var(--text-dim);
+    text-decoration:none; display:flex; align-items:center; gap:6px;
+  }
+  .hero-contact a:hover{ color: var(--accent); }
+  .hero-contact svg{ width:14px; height:14px; opacity:0.8; }
+
+  /* ---------- sections ---------- */
+  section{ padding: 52px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type{ border-bottom:none; }
+  .section-head{
+    display:flex; align-items:baseline; gap: 12px; margin-bottom: 26px;
+  }
+  .section-head .idx{ font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  h2.section-title{
+    font-family: var(--serif); font-weight:600; font-size: 1.5rem; margin:0;
+  }
+  .section-lede{ color: var(--text-dim); font-size: 15.5px; max-width: 58ch; margin: -14px 0 26px; }
+
+  /* about */
+  .about-grid{ display:grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
+  .about-text p{ margin: 0 0 16px; color: var(--text); }
+  .focus-list{ list-style:none; margin:0; padding:0; }
+  .focus-list li{
+    font-family: var(--mono); font-size: 13.5px; color: var(--text-dim);
+    padding: 9px 0; border-top: 1px solid var(--border);
+    display:flex; gap:10px;
+  }
+  .focus-list li:first-child{ border-top:none; }
+  .focus-list li::before{ content:"·"; color: var(--accent); font-weight:700; }
+  @media (max-width: 640px){ .about-grid{ grid-template-columns: 1fr; gap:24px; } }
+
+  /* skills */
+  .stack-group{ margin-bottom: 20px; }
+  .stack-group:last-child{ margin-bottom:0; }
+  .stack-label{
+    font-family: var(--mono); font-size: 12px; color: var(--text-faint);
+    margin-bottom: 10px;
+  }
+  .tag-row{ display:flex; flex-wrap:wrap; gap: 8px; }
+  .tag{
+    font-family: var(--mono); font-size: 12.5px; color: var(--text);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 5px 10px; background: var(--bg-panel);
+  }
+
+  /* experience */
+  .job{ padding: 22px 0; border-top: 1px solid var(--border); }
+  .job:first-child{ border-top:none; padding-top:0; }
+  .job-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    gap: 16px; flex-wrap: wrap; margin-bottom: 10px;
+  }
+  .job-role{ font-weight:600; font-size: 17px; }
+  .job-meta{ font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); white-space:nowrap; }
+  .job-org{ color: var(--accent-strong); font-family: var(--mono); font-size: 13px; margin-bottom: 12px; }
+  ul.bullets{ margin: 0; padding-left: 20px; }
+  ul.bullets li{ margin-bottom: 9px; color: var(--text); font-size: 15.5px; }
+  ul.bullets li:last-child{ margin-bottom:0; }
+  ul.bullets li::marker{ color: var(--accent); }
+  .sub-role{ margin-top:18px; padding-top:16px; border-top: 1px dashed var(--border); }
+
+  /* projects */
+  .proj{
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 22px; margin-bottom: 14px; background: var(--bg-panel);
+  }
+  .proj:last-child{ margin-bottom:0; }
+  .proj-head{ display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:baseline; margin-bottom:8px; }
+  .proj-title{ font-weight:600; font-size:16.5px; }
+  .proj-date{ font-family: var(--mono); font-size: 12px; color: var(--text-faint); white-space:nowrap; }
+  .proj-desc{ font-size: 15px; color: var(--text-dim); margin: 0 0 12px; }
+  .proj-tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .proj-tags span{
+    font-family: var(--mono); font-size: 11px; color: var(--accent-strong);
+    background: var(--accent-dim); padding: 3px 8px; border-radius: var(--radius);
+  }
+
+  /* education / training */
+  .ed-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 640px){ .ed-grid{ grid-template-columns: 1fr; } }
+  .ed-item{ margin-bottom: 20px; }
+  .ed-item:last-child{ margin-bottom:0; }
+  .ed-degree{ font-weight:600; font-size: 15.5px; margin-bottom:3px; }
+  .ed-school{ color: var(--text-dim); font-size: 14px; margin-bottom:3px; }
+  .ed-meta{ font-family: var(--mono); font-size: 12px; color: var(--text-faint); }
+  h3.subhead{ font-family: var(--mono); font-size: 12px; color: var(--text-faint); margin: 0 0 14px; }
+
+  .cert-list{ list-style:none; margin:0; padding:0; }
+  .cert-list li{
+    display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding: 10px 0; border-top: 1px solid var(--border); font-size: 14.5px;
+  }
+  .cert-list li:first-child{ border-top:none; }
+  .cert-name{ color: var(--text); }
+  .cert-meta{ font-family: var(--mono); font-size: 12px; color: var(--text-faint); white-space:nowrap; }
+
+  /* contact / footer */
+  .contact-cta{
+    display:flex; justify-content:space-between; align-items:flex-end; gap: 24px; flex-wrap:wrap;
+  }
+  .contact-copy p{ color: var(--text-dim); max-width: 46ch; margin: 8px 0 0; }
+  .contact-links{ display:flex; flex-direction:column; gap: 10px; align-items:flex-end; }
+  @media (max-width: 560px){ .contact-links{ align-items:flex-start; } }
+  .contact-links a{
+    font-family: var(--mono); font-size: 14px; text-decoration:none; color: var(--text);
+    display:flex; align-items:center; gap:8px;
+  }
+  .contact-links a:hover{ color: var(--accent); }
+  .contact-links svg{ width:15px; height:15px; }
+
+  footer{ padding: 26px 0 48px; }
+  .foot-line{
+    font-family: var(--mono); font-size: 12px; color: var(--text-faint);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-name">william<span class="dot">.</span>tom<span class="dot">/</span>ai-engineer</div>
+    <nav class="toplinks">
+      <a href="#about">About</a>
+      <a href="#stack">Stack</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">☾/☀</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap">
+    <div class="hero-eyebrow"><span class="pulse" aria-hidden="true"></span>Open to AI/ML engineering roles</div>
+    <h1 class="name">William Tom Jacob</h1>
+    <p class="role-line">AI Engineer — RAG systems / LLM fine-tuning / model deployment</p>
+    <p class="hero-summary">I build and ship AI systems end to end: retrieval-augmented chatbots, fine-tuned and quantized LLMs, and the FastAPI backends and containers that get them into production on AWS and Paperspace. Two years in, most of that time spent making models fast, cheap, and reliable enough to run outside a notebook.</p>
+
+    <div class="spec-block">
+      <div class="spec-cell">
+        <div class="spec-label">Experience</div>
+        <div class="spec-value">2+ years</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-label">M.Tech CGPA (AI)</div>
+        <div class="spec-value">9.13 / 10</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-label">LLM APIs shipped with</div>
+        <div class="spec-value">OpenAI · Claude · Groq · Gemini</div>
+      </div>
+    </div>
+
+    <div class="hero-contact">
+      <a href="mailto:williamtom45@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        williamtom45@gmail.com
+      </a>
+      <a href="tel:+917470421529">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1 .36 1.99.68 2.94a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.14-1.14a2 2 0 0 1 2.11-.45c.95.32 1.94.55 2.94.68A2 2 0 0 1 22 16.92z"/></svg>
+        +91 74704 21529
+      </a>
+      <a href="https://linkedin.com/in/william-tom-jacob" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        william-tom-jacob
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10a8 8 0 0 0-14.6-4.5"/><path d="M4 12a8 8 0 0 0 14.6 6.9"/><path d="M2 21v-5h5"/><path d="M22 3v5h-5"/></svg>
+        Trivandrum, India
+      </a>
+    </div>
+  </section>
+
+  <section class="wrap" id="about">
+    <div class="section-head"><h2 class="section-title">About</h2></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm currently an Associate Software Engineer – AI at Techvantage AI in Trivandrum, where I work across the stack that sits between a trained model and a working product: FastAPI services, MongoDB logging, GGUF conversion pipelines, and containerized inference on EC2.</p>
+        <p>My M.Tech in Artificial Intelligence (APJ Abdul Kalam Technological University, CGPA 9.13) followed a first degree in Mechanical Engineering — a switch that left me with an unusual amount of patience for systems that need to be measured, tuned, and re-measured before they're trusted.</p>
+        <p>Most of my recent work has centered on making large models practical: fine-tuning LLaMA-3.1 and Mistral-7B for domain-specific tasks, pruning and quantizing them for CPU inference, and building the retrieval and evaluation pipelines that keep them accurate.</p>
+      </div>
+      <ul class="focus-list">
+        <li>RAG pipelines with FAISS &amp; vector search</li>
+        <li>LLM fine-tuning (SFT, CPT, LoRA-adjacent workflows)</li>
+        <li>CPU/GPU inference optimization &amp; GGUF conversion</li>
+        <li>FastAPI backends for LLM-powered products</li>
+        <li>Containerized deployment on AWS &amp; Paperspace</li>
+        <li>Model evaluation — precision, recall, F1, BLEU/ROUGE</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap" id="stack">
+    <div class="section-head"><h2 class="section-title">Stack</h2></div>
+    <div class="stack-group">
+      <div class="stack-label">Languages</div>
+      <div class="tag-row">
+        <span class="tag">Python</span><span class="tag">R</span><span class="tag">HTML/CSS</span>
+      </div>
+    </div>
+    <div class="stack-group">
+      <div class="stack-label">AI / ML</div>
+      <div class="tag-row">
+        <span class="tag">Generative AI</span><span class="tag">LLMs</span><span class="tag">RAG</span>
+        <span class="tag">Agentic AI</span><span class="tag">Prompt Engineering</span>
+        <span class="tag">Neural Networks</span><span class="tag">Deep Learning</span><span class="tag">Machine Learning</span>
+      </div>
+    </div>
+    <div class="stack-group">
+      <div class="stack-label">Frameworks &amp; libraries</div>
+      <div class="tag-row">
+        <span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">Transformers</span>
+        <span class="tag">NLTK</span><span class="tag">FastAPI</span><span class="tag">Scikit-learn</span>
+        <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span>
+        <span class="tag">Seaborn</span><span class="tag">OpenCV</span><span class="tag">Beautiful Soup</span>
+      </div>
+    </div>
+    <div class="stack-group">
+      <div class="stack-label">Data &amp; infra</div>
+      <div class="tag-row">
+        <span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">FAISS</span>
+        <span class="tag">AWS EC2</span><span class="tag">Paperspace</span><span class="tag">Docker</span>
+        <span class="tag">Tableau</span><span class="tag">Linux</span>
+      </div>
+    </div>
+    <div class="stack-group">
+      <div class="stack-label">LLM APIs</div>
+      <div class="tag-row">
+        <span class="tag">OpenAI</span><span class="tag">Claude</span><span class="tag">Groq</span><span class="tag">Gemini</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="experience">
+    <div class="section-head"><h2 class="section-title">Experience</h2></div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-role">Associate Software Engineer – AI</div>
+        <div class="job-meta">Apr 2025 – Present</div>
+      </div>
+      <div class="job-org">Techvantage AI, Trivandrum</div>
+      <ul class="bullets">
+        <li>Built backend Python services and FastAPI endpoints for the ENOL mobile app's damage-analysis and vehicle-comparison features, connecting a React frontend to multiple LLM APIs, with MongoDB-based request/response logging.</li>
+        <li>Fine-tuned a ResNet-50 model to classify table images into Benefits, Pricing, and Other categories; iterated using precision/recall/F1 and confusion-matrix analysis to reach ~80% precision and ~70% recall.</li>
+        <li>Built an OCR node for ZENTIS 2.0 (a BFSI-focused agentic AI framework), supporting AWS Textract, Azure AI Document Intelligence, and a self-hosted DeepSeek OCR model on EC2.</li>
+        <li>Collaborated with front-end engineers to turn a multi-step Hugging Face fine-tuning workflow into a one-click UI covering model/dataset loading, fine-tuning, and multi-precision GGUF conversion.</li>
+        <li>Built a speech-to-speech conversational pipeline for Indian languages by chaining STT, an LLM, and TTS into context-aware spoken responses.</li>
+        <li>Containerized and deployed LLaMA-3.1-8B (GGUF and safetensor) for ZENTIS 1.0 on EC2 using vLLM, cutting inference cost and reliance on external APIs.</li>
+      </ul>
+
+      <div class="sub-role">
+        <div class="job-head">
+          <div class="job-role">Trainee Software Engineer – AI</div>
+          <div class="job-meta">Jan 2025 – Mar 2025</div>
+        </div>
+        <ul class="bullets">
+          <li>Fine-tuned LLaMA-3.1-8B on a claims-adjuster dataset and optimized it for CPU inference via llama-cpp (GGUF), landing within 2% of GPU performance on semantic, ROUGE-L, and BLEU metrics (GPT-4.1 as automated evaluator: 63.9 GPU vs. 62.1 CPU).</li>
+          <li>Ran continued pretraining on Mistral-7B over an actuarial corpus followed by SFT, and built a domain QA benchmark to track gains on ARC and MMLU.</li>
+          <li>Built an HR QA dataset with synonym-based augmentation, then applied L1-norm pruning to Mistral-7B to shrink it while holding accuracy.</li>
+          <li>Built a Streamlit chatbot that auto-routed queries to the best-fit LLM by context, logging conversations to MongoDB and PostgreSQL.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-role">Machine Learning Intern</div>
+        <div class="job-meta">Nov – Dec 2024</div>
+      </div>
+      <div class="job-org">Suvidha Foundation (Suvidha Mahila Mandal), Nagpur</div>
+      <ul class="bullets">
+        <li>Collected a dataset of 1,000 Indian news articles and trained a BART-based text summarization model on it.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-role">Machine Learning Intern</div>
+        <div class="job-meta">May – Jun 2023</div>
+      </div>
+      <div class="job-org">Light Logics Holography and Optics Pvt. Ltd., Trivandrum</div>
+      <ul class="bullets">
+        <li>Built a contour-detection service to identify dark and bright fringes using OpenCV, and picked up both basic and advanced OpenCV technique along the way.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap" id="projects">
+    <div class="section-head"><h2 class="section-title">Projects</h2></div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <div class="proj-title">RAG-based chatbot for vehicle manual assistance</div>
+        <div class="proj-date">Nov 2025</div>
+      </div>
+      <p class="proj-desc">A retrieval-augmented chatbot over the Suzuki Fronx car manual, using FAISS for vector storage so answers stay grounded in the actual manual instead of the model's general knowledge.</p>
+      <div class="proj-tags"><span>Python</span><span>RAG</span><span>FAISS</span><span>Deep Learning</span></div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <div class="proj-title">Semantic segmentation on an iris (eye) dataset</div>
+        <div class="proj-date">Jul – Aug 2024</div>
+      </div>
+      <p class="proj-desc">A U-Net model trained to segment iris masks across a dataset of 250 people, five images each.</p>
+      <div class="proj-tags"><span>Python</span><span>U-Net</span><span>Deep Learning</span></div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <div class="proj-title">Automated feedback system for students — M.Tech dissertation</div>
+        <div class="proj-date">Oct 2023 – Jun 2024</div>
+      </div>
+      <p class="proj-desc">A GPT-2-based feedback system trained on an Indian-history dataset, with data augmentation used to widen and strengthen the training set.</p>
+      <div class="proj-tags"><span>GPT-2</span><span>Transformers</span><span>NLP</span></div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <div class="proj-title">Predictive maintenance with machine learning — M.Tech mini project</div>
+        <div class="proj-date">Apr – Aug 2023</div>
+      </div>
+      <p class="proj-desc">An SVM-based predictive maintenance model trained on a synthetic Kaggle dataset, using SMOTE to correct class imbalance.</p>
+      <div class="proj-tags"><span>SVM</span><span>SMOTE</span><span>Scikit-learn</span></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="education">
+    <div class="section-head"><h2 class="section-title">Education &amp; training</h2></div>
+    <div class="ed-grid">
+      <div>
+        <h3 class="subhead">Education</h3>
+        <div class="ed-item">
+          <div class="ed-degree">M.Tech, Artificial Intelligence</div>
+          <div class="ed-school">APJ Abdul Kalam Technological University</div>
+          <div class="ed-meta">Oct 2022 – Jun 2024 · CGPA 9.13/10</div>
+        </div>
+        <div class="ed-item">
+          <div class="ed-degree">B.Tech, Mechanical Engineering</div>
+          <div class="ed-school">National Institute of Technology, Bhopal</div>
+          <div class="ed-meta">2017 – 2021 · CGPA 7.06/10</div>
+        </div>
+      </div>
+      <div>
+        <h3 class="subhead">Certifications &amp; training</h3>
+        <ul class="cert-list">
+          <li><span class="cert-name">IBM Data Science Professional Certificate</span><span class="cert-meta">Jan – Feb 2025</span></li>
+          <li><span class="cert-name">Internshala Data Science Certification</span><span class="cert-meta">Mar – Jun 2024</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact">
+    <div class="section-head"><h2 class="section-title">Contact</h2></div>
+    <div class="contact-cta">
+      <div class="contact-copy">
+        <p>Open to AI/ML engineering roles — especially ones involving LLM systems, RAG, or getting models into production. Based in Trivandrum, happy to work remote or relocate.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:williamtom45@gmail.com">williamtom45@gmail.com</a>
+        <a href="tel:+917470421529">+91 74704 21529</a>
+        <a href="https://linkedin.com/in/william-tom-jacob" target="_blank" rel="noopener">linkedin.com/in/william-tom-jacob</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="foot-line">
+    <span>William Tom Jacob</span>
+    <span>Trivandrum, India — 2026</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var stored = null;
+    try { stored = null; } catch(e){}
+    function apply(mode){
+      if(mode){ root.setAttribute('data-theme', mode); }
+      else { root.removeAttribute('data-theme'); }
+    }
+    var current = null;
+    btn.addEventListener('click', function(){
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var effectiveIsDark = current ? current === 'dark' : prefersDark;
+      current = effectiveIsDark ? 'light' : 'dark';
+      apply(current);
+    });
+  })();
+</script>
+
+</body>
+</html>
