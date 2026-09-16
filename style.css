@@ -61,7 +61,7 @@
   header.hero{position:relative; z-index:1; padding:80px 0 70px;}
   .pill{
     display:inline-flex; align-items:center; gap:8px;
-    font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.03em;
+    font-family:'Space Mono',monospace; font-size:20px; letter-spacing:.03em;
     border:1px solid var(--rule); padding:7px 14px; border-radius:20px; color:var(--fg-dim);
     margin-bottom:28px; opacity:0; animation:rise .6s ease forwards; animation-delay:.05s;
   }
@@ -159,7 +159,18 @@
   .exp-item .org{color:var(--fg-dim); font-size:14px; margin-bottom:10px;}
   .exp-item ul{padding-left:18px; color:var(--fg-dim); font-size:14.5px;}
   .exp-item li{margin-bottom:5px;}
-  .sub-role{margin-top:22px; padding-top:20px; border-top:1px dashed var(--rule);}
+  /* .sub-role{margin-top:22px; padding-top:20px; border-top:1px dashed var(--rule);} */
+  .sub-role{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:24px;
+    margin-top:22px;
+    padding-top:20px;
+    border-top:1px dashed var(--rule);
+    margin-left:-164px;
+    width:calc(100% + 164px);
+  }
+  @media (max-width:600px){ .sub-role{grid-template-columns:1fr; gap:6px; margin-left:0; width:auto;} }
 
   /* ---- certifications ---- */
   .cert-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
@@ -168,6 +179,7 @@
   .cert .ico{color:var(--gold); font-size:18px;}
   .cert .ctitle{font-size:14px; font-weight:600;}
   .cert .cmeta{font-size:12px; color:var(--fg-dim); font-family:'Space Mono',monospace; margin-top:3px;}
+  .cert .cid{font-size:11px; color:var(--fg-dim); font-family:'Space Mono',monospace; margin-top:2px; opacity:.7; word-break:break-all;}
 
   /* ---- education ---- */
   .edu-item{display:flex; justify-content:space-between; gap:16px; padding:20px 0; border-bottom:1px solid var(--rule); flex-wrap:wrap;}
