@@ -1,16 +1,3 @@
-  /* :root{
-    color-scheme: dark;
-    --bg: #211627;
-    --bg-raised: #2A1D31;
-    --bg-card: #2F2138;
-    --fg: #F5EFE6;
-    --fg-dim: #B7A9BE;
-    --magenta: #D6406E;
-    --gold: #C9A24B;
-    --rule: rgba(245,239,230,0.10);
-    --max: 1040px;
-  } */
-
   :root{
   color-scheme: dark;
   --bg: #0B1220;          /* deep navy background */
