@@ -61,11 +61,19 @@
   nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:12px 30px;}
   .brand{font-family:'Fraunces',serif; font-weight:600; font-size:18px; display:flex; align-items:center; gap:11px;}
   .brand .dot{color:var(--magenta);}
+  /* .avatar{
+    width:42px; height:42px; border-radius:50%; flex-shrink:0;
+    background:var(--bg-card); border:2px solid var(--magenta);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Mono',monospace; font-weight:700; font-size:14px; color:var(--gold);
+  } */
+
   .avatar{
     width:42px; height:42px; border-radius:50%; flex-shrink:0;
     background:var(--bg-card); border:2px solid var(--magenta);
     display:flex; align-items:center; justify-content:center;
     font-family:'Space Mono',monospace; font-weight:700; font-size:14px; color:var(--gold);
+    object-fit: cover;   /* ← add this: crops the photo to fill the circle nicely */
   }
   .nav-links{display:flex; gap:26px; list-style:none; font-size:14px; font-weight:500;}
   .nav-links a{text-decoration:none; color:var(--fg-dim); transition:color .2s;}
